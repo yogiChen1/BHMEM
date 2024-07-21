@@ -10,7 +10,7 @@ const routers = {
             "component": "Layout",
             "alwaysShow": true,
             "meta": {
-                "title": "用户管理",
+                "title": "系统管理",
                 "icon": "system",
                 "noCache": false,
                 "link": null
@@ -58,7 +58,7 @@ const routers = {
                     "hidden": false,
                     "component": "system/dept/index",
                     "meta": {
-                        "title": "部门管理",
+                        "title": "组织管理",
                         "icon": "tree",
                         "noCache": false,
                         "link": null
@@ -154,155 +154,155 @@ const routers = {
                 }
             ]
         },
-        {
-            "name": "Monitor",
-            "path": "/monitor",
-            "hidden": false,
-            "redirect": "noRedirect",
-            "component": "Layout",
-            "alwaysShow": true,
-            "meta": {
-                "title": "系统监控",
-                "icon": "monitor",
-                "noCache": false,
-                "link": null
-            },
-            "children": [
-                {
-                    "name": "Online",
-                    "path": "online",
-                    "hidden": false,
-                    "component": "monitor/online/index",
-                    "meta": {
-                        "title": "在线用户",
-                        "icon": "online",
-                        "noCache": false,
-                        "link": null
-                    }
-                },
-                {
-                    "name": "Job",
-                    "path": "job",
-                    "hidden": false,
-                    "component": "monitor/job/index",
-                    "meta": {
-                        "title": "定时任务",
-                        "icon": "job",
-                        "noCache": false,
-                        "link": null
-                    }
-                },
-                {
-                    "name": "Druid",
-                    "path": "druid",
-                    "hidden": false,
-                    "component": "monitor/druid/index",
-                    "meta": {
-                        "title": "数据监控",
-                        "icon": "druid",
-                        "noCache": false,
-                        "link": null
-                    }
-                },
-                {
-                    "name": "Server",
-                    "path": "server",
-                    "hidden": false,
-                    "component": "monitor/server/index",
-                    "meta": {
-                        "title": "服务监控",
-                        "icon": "server",
-                        "noCache": false,
-                        "link": null
-                    }
-                },
-                {
-                    "name": "Cache",
-                    "path": "cache",
-                    "hidden": false,
-                    "component": "monitor/cache/index",
-                    "meta": {
-                        "title": "缓存监控",
-                        "icon": "redis",
-                        "noCache": false,
-                        "link": null
-                    }
-                },
-                {
-                    "name": "CacheList",
-                    "path": "cacheList",
-                    "hidden": false,
-                    "component": "monitor/cache/list",
-                    "meta": {
-                        "title": "缓存列表",
-                        "icon": "redis-list",
-                        "noCache": false,
-                        "link": null
-                    }
-                }
-            ]
-        },
-        {
-            "name": "Tool",
-            "path": "/tool",
-            "hidden": false,
-            "redirect": "noRedirect",
-            "component": "Layout",
-            "alwaysShow": true,
-            "meta": {
-                "title": "系统工具",
-                "icon": "tool",
-                "noCache": false,
-                "link": null
-            },
-            "children": [
-                {
-                    "name": "Build",
-                    "path": "build",
-                    "hidden": false,
-                    "component": "tool/build/index",
-                    "meta": {
-                        "title": "表单构建",
-                        "icon": "build",
-                        "noCache": false,
-                        "link": null
-                    }
-                },
-                {
-                    "name": "Gen",
-                    "path": "gen",
-                    "hidden": false,
-                    "component": "tool/gen/index",
-                    "meta": {
-                        "title": "代码生成",
-                        "icon": "code",
-                        "noCache": false,
-                        "link": null
-                    }
-                },
-                {
-                    "name": "Swagger",
-                    "path": "swagger",
-                    "hidden": false,
-                    "component": "tool/swagger/index",
-                    "meta": {
-                        "title": "系统接口",
-                        "icon": "swagger",
-                        "noCache": false,
-                        "link": null
-                    }
-                }
-            ]
-        },
+        // {
+        //     "name": "Monitor",
+        //     "path": "/monitor",
+        //     "hidden": false,
+        //     "redirect": "noRedirect",
+        //     "component": "Layout",
+        //     "alwaysShow": true,
+        //     "meta": {
+        //         "title": "系统监控",
+        //         "icon": "monitor",
+        //         "noCache": false,
+        //         "link": null
+        //     },
+        //     "children": [
+        //         {
+        //             "name": "Online",
+        //             "path": "online",
+        //             "hidden": false,
+        //             "component": "monitor/online/index",
+        //             "meta": {
+        //                 "title": "在线用户",
+        //                 "icon": "online",
+        //                 "noCache": false,
+        //                 "link": null
+        //             }
+        //         },
+        //         {
+        //             "name": "Job",
+        //             "path": "job",
+        //             "hidden": false,
+        //             "component": "monitor/job/index",
+        //             "meta": {
+        //                 "title": "定时任务",
+        //                 "icon": "job",
+        //                 "noCache": false,
+        //                 "link": null
+        //             }
+        //         },
+        //         {
+        //             "name": "Druid",
+        //             "path": "druid",
+        //             "hidden": false,
+        //             "component": "monitor/druid/index",
+        //             "meta": {
+        //                 "title": "数据监控",
+        //                 "icon": "druid",
+        //                 "noCache": false,
+        //                 "link": null
+        //             }
+        //         },
+        //         {
+        //             "name": "Server",
+        //             "path": "server",
+        //             "hidden": false,
+        //             "component": "monitor/server/index",
+        //             "meta": {
+        //                 "title": "服务监控",
+        //                 "icon": "server",
+        //                 "noCache": false,
+        //                 "link": null
+        //             }
+        //         },
+        //         {
+        //             "name": "Cache",
+        //             "path": "cache",
+        //             "hidden": false,
+        //             "component": "monitor/cache/index",
+        //             "meta": {
+        //                 "title": "缓存监控",
+        //                 "icon": "redis",
+        //                 "noCache": false,
+        //                 "link": null
+        //             }
+        //         },
+        //         {
+        //             "name": "CacheList",
+        //             "path": "cacheList",
+        //             "hidden": false,
+        //             "component": "monitor/cache/list",
+        //             "meta": {
+        //                 "title": "缓存列表",
+        //                 "icon": "redis-list",
+        //                 "noCache": false,
+        //                 "link": null
+        //             }
+        //         }
+        //     ]
+        // },
+        // {
+        //     "name": "Tool",
+        //     "path": "/tool",
+        //     "hidden": false,
+        //     "redirect": "noRedirect",
+        //     "component": "Layout",
+        //     "alwaysShow": true,
+        //     "meta": {
+        //         "title": "系统工具",
+        //         "icon": "tool",
+        //         "noCache": false,
+        //         "link": null
+        //     },
+        //     "children": [
+        //         {
+        //             "name": "Build",
+        //             "path": "build",
+        //             "hidden": false,
+        //             "component": "tool/build/index",
+        //             "meta": {
+        //                 "title": "表单构建",
+        //                 "icon": "build",
+        //                 "noCache": false,
+        //                 "link": null
+        //             }
+        //         },
+        //         {
+        //             "name": "Gen",
+        //             "path": "gen",
+        //             "hidden": false,
+        //             "component": "tool/gen/index",
+        //             "meta": {
+        //                 "title": "代码生成",
+        //                 "icon": "code",
+        //                 "noCache": false,
+        //                 "link": null
+        //             }
+        //         },
+        //         {
+        //             "name": "Swagger",
+        //             "path": "swagger",
+        //             "hidden": false,
+        //             "component": "tool/swagger/index",
+        //             "meta": {
+        //                 "title": "系统接口",
+        //                 "icon": "swagger",
+        //                 "noCache": false,
+        //                 "link": null
+        //             }
+        //         }
+        //     ]
+        // },
         {
             "name": "Edu",
-            "path": "/edu",
+            "path": "/bhMem",
             "hidden": false,
             "redirect": "noRedirect",
             "component": "Layout",
             "alwaysShow": true,
             "meta": {
-                "title": "学分计划管理",
+                "title": "课程计划管理",
                 "icon": "education",
                 "noCache": false,
                 "link": null
@@ -314,7 +314,7 @@ const routers = {
                     "hidden": false,
                     "component": "ParentView",
                     "meta": {
-                        "title": "学分计划",
+                        "title": "计划管理",
                         "icon": "education",
                         "noCache": false,
                         "link": null
@@ -326,7 +326,7 @@ const routers = {
                     "hidden": false,
                     "component": "ParentView",
                     "meta": {
-                        "title": "课程",
+                        "title": "课程管理",
                         "icon": "education",
                         "noCache": false,
                         "link": null

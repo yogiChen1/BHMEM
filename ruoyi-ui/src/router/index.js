@@ -46,7 +46,7 @@ export const constantRoutes = [
     component: () => import('@/views/login'),
     hidden: true
   },
-  
+
   // 课程管理
   // {
   //   path: '/course',
@@ -78,6 +78,13 @@ export const constantRoutes = [
         component: () => import('@/views/index_v1'),
         name: 'Index',
         meta: { title: '首页', icon: 'dashboard', affix: true }
+      },
+      // 课程管理
+      {
+        title: '计划管理',
+        path: '/bhMem/plan',
+        component: () => import('@/views/plan'),
+        hidden: false
       },
       // 课程管理
       {
@@ -128,7 +135,7 @@ export const constantRoutes = [
         component: () => import('@/views/approval'),
         hidden: false
       },
-      
+
     ]
   },
   {
