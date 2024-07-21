@@ -135,6 +135,11 @@ export const constantRoutes = [
         component: () => import('@/views/approval'),
         hidden: false
       },
+      {
+        path: 'system/notice',
+        component: () => import('@/views/system/notice'),
+        hidden: true
+      },
 
     ]
   },

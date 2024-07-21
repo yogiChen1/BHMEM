@@ -78,7 +78,6 @@
       <el-table-column label="年级" align="center" prop="planGrade" />
       <el-table-column label="计划说明" align="center" prop="remark" />
       <el-table-column label="累计应修学分" align="center" prop="scoreAll" />
-
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -88,6 +87,13 @@
             @click="handleUpdate(scope.row)"
             v-hasPermi="['system:plan:edit']"
           >修改</el-button>
+          <el-button
+            size="mini"
+            type="text"
+            icon="el-icon-edit"
+            @click="handleDetail(scope.row)"
+            v-hasPermi="false"
+          >详情</el-button>
           <el-button
             size="mini"
             type="text"
@@ -127,12 +133,103 @@
         <el-button @click="cancel">取 消</el-button>
       </div>
     </el-dialog>
+<!--    计划详情-->
+
+<!--    抽屉样式-->
+<!--    <el-drawer-->
+<!--      title="计划详情"-->
+<!--      :visible.sync="detailOpen"-->
+<!--      :direction="rtl"-->
+<!--      >-->
+<!--      <span>我来啦!</span>-->
+<!--    </el-drawer>-->
+<!--    弹窗样式-->
+    <el-dialog title="计划详情" :visible.sync="detailOpen"  fullscreen="true" append-to-body>
+      <el-descriptions class="margin-top" :title="rowDetail.planName" :column="3" :size="size" border>
+        <el-descriptions-item>
+          <template slot="label">
+            <i class="el-icon-mobile-phone"></i>
+            计划ID
+          </template>
+          {{ rowDetail.planId }}
+        </el-descriptions-item>
+
+        <el-descriptions-item>
+          <template slot="label">
+            <i class="el-icon-user"></i>
+            计划名称
+          </template>
+          {{ rowDetail.planName }}
+        </el-descriptions-item>
+
+        <el-descriptions-item>
+          <template slot="label">
+            <i class="el-icon-user"></i>
+            所属年级
+          </template>
+          {{ rowDetail.planGrade }}
+        </el-descriptions-item>
+
+        <el-descriptions-item>
+          <template slot="label">
+            <i class="el-icon-tickets"></i>
+            计划说明
+          </template>
+          <el-tag size="small">{{ rowDetail.remark }}</el-tag>
+        </el-descriptions-item>
+      </el-descriptions>
+      <el-row style="margin-top:20px; margin-bottom:20px">
+        <el-button type="primary" @click="submitForm">添加课程</el-button>
+      </el-row>
+        <el-table :data="planCourseList" border style="width: 100%">
+          <el-table-column fixed prop="courseId" label="课程id" width="120">
+          </el-table-column>
+          <el-table-column prop="courseName" label="一级课程名称" width="150">
+          </el-table-column>
+          <el-table-column prop="courseCategory" label="二级课程名称" width="150">
+          </el-table-column>
+          <el-table-column prop="courseContent" label="课程内容" width="280">
+          </el-table-column>
+
+          <el-table-column prop="necessary" label="必修/选修" width="120">
+          </el-table-column>
+          <el-table-column prop="requireTimes" label="需完成次数" width="120">
+          </el-table-column>
+          <el-table-column prop="scoreType" label="学分规则" width="180">
+          </el-table-column>
+          <el-table-column label="操作">
+            <template slot-scope="scope">
+              <el-popconfirm
+                title="是否确认将该课程从计划中删除？"
+                @confirm=""
+              >
+                <el-button type="text" slot="reference">删除</el-button>
+              </el-popconfirm>
+            </template>
+<!--            <template slot-scope="scope">-->
+<!--              <el-button @click="handleClick(scope.row)" type="text" size="small">删除</el-button>-->
+<!--            </template>-->
+          </el-table-column>
+        </el-table>
+
+
+<!--      <div slot="footer" class="dialog-footer">-->
+<!--        <el-button type="primary" @click="submitForm">确 定</el-button>-->
+<!--        <el-button @click="cancel">取 消</el-button>-->
+<!--      </div>-->
+    </el-dialog>
+
+
+
   </div>
 </template>
 
 <script>
 import { listPlan, getPlan, delPlan, addPlan, updatePlan } from "@/api/system/plan";
 import plan_list from '@/mock/plan_list'
+import plan_course_list from '@/mock/plan_course_list'
+
+
 
 export default {
   name: "Plan",
@@ -156,6 +253,8 @@ export default {
       title: "",
       // 是否显示弹出层
       open: false,
+      // 详情页弹出
+      detailOpen:false,
       // 查询参数
       queryParams: {
         pageNum: 1,
@@ -167,7 +266,13 @@ export default {
       form: {},
       // 表单校验
       rules: {
-      }
+      },
+      //当前计划数据
+      rowDetail:{
+
+      },
+      //当前计划课程列表
+      planCourseList:[]
     };
   },
   created() {
@@ -187,9 +292,13 @@ export default {
       //   this.loading = false;
       // });
     },
+    getPlanCourseList(){
+      this.planCourseList = plan_course_list.rows
+    },
     // 取消按钮
     cancel() {
       this.open = false;
+      this.detailOpen = false;
       this.reset();
     },
     // 表单重置
@@ -269,7 +378,28 @@ export default {
       this.download('system/plan/export', {
         ...this.queryParams
       }, `plan_${new Date().getTime()}.xlsx`)
-    }
+    },
+    /** 计划详情 **/
+    handleDetail(row) {
+      this.reset();
+      this.detailOpen = true;
+      this.rowDetail = row;
+      this.getPlanCourseList();
+      // getPlan(planId).then(response => {
+      //   this.courseList = response.data;
+      //
+      // });
+    },
+    handlePlanCourseDelete(row) {
+      const courseId = row.courseId;
+      this.$modal.confirm('是否确认将课程从综合实践计划中删除？').then(function() {
+        // return delPlan(planIds);
+        return;
+      }).then(() => {
+        this.getList();
+        this.$modal.msgSuccess("删除成功");
+      }).catch(() => {});
+    },
   }
 };
 </script>

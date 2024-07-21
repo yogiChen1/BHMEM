@@ -171,6 +171,7 @@
 
 <script>
 import { listNotice, getNotice, delNotice, addNotice, updateNotice } from "@/api/system/notice";
+import notice_list from '@/mock/notice_list'
 
 export default {
   name: "Notice",
@@ -223,11 +224,14 @@ export default {
     /** 查询公告列表 */
     getList() {
       this.loading = true;
-      listNotice(this.queryParams).then(response => {
-        this.noticeList = response.rows;
-        this.total = response.total;
-        this.loading = false;
-      });
+      this.noticeList = notice_list.rows;
+      this.total = notice_list.total;
+      this.loading = false;
+      // listNotice(this.queryParams).then(response => {
+      //   this.noticeList = response.rows;
+      //   this.total = response.total;
+      //   this.loading = false;
+      // });
     },
     // 取消按钮
     cancel() {
